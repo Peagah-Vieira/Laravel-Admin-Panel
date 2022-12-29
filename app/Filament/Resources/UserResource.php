@@ -14,7 +14,6 @@ use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
@@ -44,6 +43,16 @@ class UserResource extends Resource
     public static function getGloballySearchableAttributes(): array
     {
         return ['name', 'email'];
+    }
+
+    /**
+     * Function that returns values ​​from the model and shows in the sidebar
+     *
+     * @return integer
+     */
+    protected static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
     }
 
     public static function form(Form $form): Form
@@ -89,7 +98,7 @@ class UserResource extends Resource
                     ->searchable()
                     ->sortable()
                     ->dateTime(),
-            ])
+            ])->defaultSort('id')
             ->filters([
                 SelectFilter::make('role')
                     ->options([

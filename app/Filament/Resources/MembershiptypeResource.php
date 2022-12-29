@@ -24,6 +24,16 @@ class MembershiptypeResource extends Resource
 
     protected static ?string $navigationGroup = 'Resources';
 
+    /**
+     * Function that returns values ​​from the model and shows in the sidebar
+     *
+     * @return integer
+     */
+    protected static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
     public static function form(Form $form): Form
     {
         return $form
@@ -43,14 +53,27 @@ class MembershiptypeResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('type_name'),
-                Tables\Columns\TextColumn::make('membership_period'),
-                Tables\Columns\TextColumn::make('membership_amout'),
+                Tables\Columns\TextColumn::make('id')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('type_name')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('membership_period')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('membership_amout')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->searchable()
+                    ->sortable()
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->searchable()
+                    ->sortable()
                     ->dateTime(),
-            ])
+            ])->defaultSort('id')
             ->filters([
                 //
             ])
@@ -61,14 +84,14 @@ class MembershiptypeResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -76,5 +99,5 @@ class MembershiptypeResource extends Resource
             'create' => Pages\CreateMembershiptype::route('/create'),
             'edit' => Pages\EditMembershiptype::route('/{record}/edit'),
         ];
-    }    
+    }
 }

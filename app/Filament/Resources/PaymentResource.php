@@ -11,6 +11,7 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PaymentResource extends Resource
@@ -22,6 +23,16 @@ class PaymentResource extends Resource
     protected static ?string $navigationLabel = 'Payments Resource';
 
     protected static ?string $navigationGroup = 'Resources';
+
+    /**
+     * Function that returns values ​​from the model and shows in the sidebar
+     *
+     * @return integer
+     */
+    protected static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
 
     public static function form(Form $form): Form
     {
@@ -42,17 +53,26 @@ class PaymentResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('member_id'),
-                Tables\Columns\TextColumn::make('amount'),
+                Tables\Columns\TextColumn::make('id')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('amount')
+                    ->searchable()
+                    ->sortable()
+                    ->money(),
                 Tables\Columns\TextColumn::make('payment_time')
+                    ->searchable()
+                    ->sortable()
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('payment_date')
+                    ->searchable()
+                    ->sortable()
                     ->date(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->searchable()
+                    ->sortable()
                     ->dateTime(),
-            ])
+            ])->defaultSort('id')
             ->filters([
                 //
             ])
@@ -63,14 +83,14 @@ class PaymentResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -78,5 +98,5 @@ class PaymentResource extends Resource
             'create' => Pages\CreatePayment::route('/create'),
             'edit' => Pages\EditPayment::route('/{record}/edit'),
         ];
-    }    
+    }
 }

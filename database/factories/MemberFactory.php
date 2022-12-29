@@ -17,7 +17,15 @@ class MemberFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'member_name' => fake()->name(),
+            'address' => fake()->name(),
+            'contact' => fake()->phoneNumber(),
+            'email' => fake()->email(),
+            'age' => fake()->numberBetween(18, 50),
+            'gender' => 'Male',
+            'joining_date' => now(),
+            'ending_date' => now(),
+            'active' => 0,
         ];
     }
 }

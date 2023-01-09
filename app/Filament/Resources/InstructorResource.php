@@ -60,19 +60,32 @@ class InstructorResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('instructor_name')
-                    ->required()
-                    ->maxLength(30),
-                Forms\Components\TextInput::make('contact')
-                    ->required()
-                    ->maxLength(15),
-                Forms\Components\TextInput::make('address')
-                    ->required()
-                    ->maxLength(100),
-                Forms\Components\TextInput::make('email')
-                    ->email()
-                    ->required()
-                    ->maxLength(30),
+                Forms\Components\Card::make()
+                    ->schema([
+                        Forms\Components\TextInput::make('instructor_name')
+                            ->placeholder('John Doe')
+                            ->required()
+                            ->maxLength(30),
+                        Forms\Components\TextInput::make('contact')
+                            ->mask(fn (Forms\Components\TextInput\Mask $mask) => $mask->pattern('(00)00000-0000'))
+                            ->placeholder('(22)99843-8864')
+                            ->numeric()
+                            ->tel()
+                            ->required()
+                            ->maxLength(50),
+                        Forms\Components\TextInput::make('address')
+                            ->placeholder('Some Place Here')
+                            ->required()
+                            ->maxLength(100),
+                        Forms\Components\TextInput::make('email')
+                            ->placeholder('teste@teste.com')
+                            ->email()
+                            ->required()
+                            ->maxLength(30),
+                        Forms\Components\Toggle::make('active')
+                            ->nullable()
+                            ->onColor('success')
+                    ])
             ]);
     }
 
@@ -80,7 +93,7 @@ class InstructorResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('id')
+                Tables\Columns\BadgeColumn::make('id')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('instructor_name')
@@ -126,7 +139,6 @@ class InstructorResource extends Resource
     {
         return [
             'index' => Pages\ListInstructors::route('/'),
-            'create' => Pages\CreateInstructor::route('/create'),
             'edit' => Pages\EditInstructor::route('/{record}/edit'),
         ];
     }

@@ -17,9 +17,7 @@ class MembershiptypeFactory extends Factory
     public function definition()
     {
         return [
-            'type_name' => fake()->domainName(),
-            'membership_period' => now(),
-            'membership_amout' => 50.00,
+            //
         ];
     }
 }

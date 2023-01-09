@@ -43,7 +43,7 @@ class MemberResource extends Resource
      */
     public static function getGloballySearchableAttributes(): array
     {
-        return ['member_name', 'address', 'contact', 'email', 'age', 'gender', 'joining_date', 'end_of_membership_date'];
+        return ['member_name', 'address', 'contact', 'email', 'age', 'gender', 'joining_date'];
     }
     /**
      * Function that returns values ​​from the model and shows in the sidebar
@@ -59,28 +59,39 @@ class MemberResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('member_name')
-                    ->required()
-                    ->maxLength(50),
-                Forms\Components\TextInput::make('address')
-                    ->required()
-                    ->maxLength(100),
-                Forms\Components\TextInput::make('contact')
-                    ->required()
-                    ->maxLength(15),
-                Forms\Components\TextInput::make('email')
-                    ->email()
-                    ->required()
-                    ->maxLength(30),
-                Forms\Components\TextInput::make('age')
-                    ->required(),
-                Forms\Components\TextInput::make('gender')
-                    ->required()
-                    ->maxLength(30),
-                Forms\Components\DatePicker::make('joining_date')
-                    ->required(),
-                Forms\Components\DatePicker::make('end_of_membership_date')
-                    ->required(),
+                Forms\Components\Card::make()
+                    ->schema([
+                        Forms\Components\TextInput::make('member_name')
+                            ->placeholder('John Doe')
+                            ->required()
+                            ->maxLength(50),
+                        Forms\Components\TextInput::make('address')
+                            ->placeholder('Some Place Here')
+                            ->required()
+                            ->maxLength(100),
+                        Forms\Components\TextInput::make('contact')
+                            ->mask(fn (Forms\Components\TextInput\Mask $mask) => $mask->pattern('(00)00000-0000'))
+                            ->placeholder('(22)99843-8864')
+                            ->numeric()
+                            ->tel()
+                            ->required()
+                            ->maxLength(15),
+                        Forms\Components\TextInput::make('email')
+                            ->placeholder('teste@teste.com')
+                            ->email()
+                            ->required()
+                            ->maxLength(30),
+                        Forms\Components\TextInput::make('age')
+                            ->placeholder('18')
+                            ->required(),
+                        Forms\Components\Select::make('gender')
+                            ->required()
+                            ->options([
+                                'Male' => 'Male',
+                                'Female' => 'Female',
+                                'Other' => 'Other'
+                            ])
+                    ])
             ]);
     }
 
@@ -88,7 +99,7 @@ class MemberResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('id')
+                Tables\Columns\BadgeColumn::make('id')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('member_name')
@@ -103,20 +114,10 @@ class MemberResource extends Resource
                 Tables\Columns\TextColumn::make('email')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('age')
+                Tables\Columns\BadgeColumn::make('age')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('gender'),
-                Tables\Columns\TextColumn::make('joining_date')
-                    ->searchable()
-                    ->sortable()
-                    ->date(),
-                Tables\Columns\TextColumn::make('ending_date')
-                    ->searchable()
-                    ->sortable()
-                    ->date(),
-                Tables\Columns\IconColumn::make('active')
-                    ->boolean(),
+                Tables\Columns\BadgeColumn::make('gender'),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime(),
             ])->defaultSort('id')

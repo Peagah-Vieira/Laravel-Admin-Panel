@@ -21,8 +21,5 @@ class Member extends Model
         'email',
         'age',
         'gender',
-        'joining_date',
-        'end_of_membership_date',
-        'active',
     ];
 }

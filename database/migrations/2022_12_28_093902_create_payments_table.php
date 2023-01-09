@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('member_id');
             $table->float('amount');
-            $table->timestamp('payment_time');
+            $table->time('payment_time');
             $table->date('payment_date');
             $table->timestamps();
         });

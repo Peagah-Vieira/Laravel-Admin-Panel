@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PaymentResource\Pages;
-use App\Filament\Resources\PaymentResource\RelationManagers;
 use App\Models\Payment;
 use Filament\Forms;
 use Filament\Resources\Form;
@@ -38,14 +37,22 @@ class PaymentResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('member_id')
-                    ->required(),
-                Forms\Components\TextInput::make('amount')
-                    ->required(),
-                Forms\Components\DateTimePicker::make('payment_time')
-                    ->required(),
-                Forms\Components\DatePicker::make('payment_date')
-                    ->required(),
+                Forms\Components\Card::make()
+                    ->schema([
+                        Forms\Components\Select::make('member_name')
+                            ->required(),
+                        Forms\Components\Select::make('membership_type')
+                            ->required(),
+                        Forms\Components\TextInput::make('amount')
+                            ->mask(fn (Forms\Components\TextInput\Mask $mask) => $mask->money(prefix: '$', isSigned: false))
+                            ->required(),
+                        Forms\Components\TimePicker::make('payment_time')
+                            ->placeholder('18:00:00')
+                            ->required(),
+                        Forms\Components\DatePicker::make('payment_date')
+                            ->placeholder('Jan 5, 2023')
+                            ->required(),
+                    ])
             ]);
     }
 
@@ -56,18 +63,21 @@ class PaymentResource extends Resource
                 Tables\Columns\TextColumn::make('id')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('amount')
+                Tables\Columns\TextColumn::make('member_name')
                     ->searchable()
-                    ->sortable()
-                    ->money(),
-                Tables\Columns\TextColumn::make('payment_time')
+                    ->sortable(),
+                Tables\Columns\BadgeColumn::make('amount')
+                    ->prefix('$')
                     ->searchable()
-                    ->sortable()
-                    ->dateTime(),
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('payment_date')
                     ->searchable()
                     ->sortable()
                     ->date(),
+                Tables\Columns\TextColumn::make('payment_time')
+                    ->time()
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->searchable()
                     ->sortable()
@@ -95,7 +105,6 @@ class PaymentResource extends Resource
     {
         return [
             'index' => Pages\ListPayments::route('/'),
-            'create' => Pages\CreatePayment::route('/create'),
             'edit' => Pages\EditPayment::route('/{record}/edit'),
         ];
     }

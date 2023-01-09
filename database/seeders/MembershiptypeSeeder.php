@@ -15,6 +15,6 @@ class MembershiptypeSeeder extends Seeder
      */
     public function run()
     {
-        Membershiptype::factory(50)->create();
+        Membershiptype::factory(0)->create();
     }
 }

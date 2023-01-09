@@ -21,9 +21,6 @@ return new class extends Migration
             $table->string('email');
             $table->integer('age');
             $table->string('gender');
-            $table->date('joining_date');
-            $table->date('ending_date');
-            $table->boolean('active');
             $table->timestamps();
         });
     }

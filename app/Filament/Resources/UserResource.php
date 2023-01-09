@@ -14,6 +14,7 @@ use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
@@ -59,18 +60,23 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('email')
-                    ->email()
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Select::make('role')->options([
-                    'Manager' => 'Manager',
-                    'Instructor' => 'Instructor',
-                    'Member' => 'Member',
-                ])
+                Forms\Components\Card::make()
+                    ->schema([
+                        Forms\Components\TextInput::make('name')
+                            ->placeholder('John Doe')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('email')
+                            ->placeholder('teste@teste.com')
+                            ->email()
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\Select::make('role')->options([
+                            'Manager' => 'Manager',
+                            'Instructor' => 'Instructor',
+                            'Member' => 'Member',
+                        ])
+                    ])
             ]);
     }
 
@@ -78,7 +84,7 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('id')
+                Tables\Columns\BadgeColumn::make('id')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('name')
@@ -87,7 +93,7 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('email')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('role')
+                Tables\Columns\BadgeColumn::make('role')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
@@ -127,7 +133,6 @@ class UserResource extends Resource
     {
         return [
             'index' => Pages\ListUsers::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
     }

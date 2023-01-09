@@ -16,7 +16,6 @@ class Membershiptype extends Model
      */
     protected $fillable = [
         'type_name',
-        'membership_period',
-        'membership_amout',
+        'amount'
     ];
 }

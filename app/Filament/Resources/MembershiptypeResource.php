@@ -25,6 +25,27 @@ class MembershiptypeResource extends Resource
     protected static ?string $navigationGroup = 'Resources';
 
     /**
+     * Function that returns the name as the title of the found value
+     *
+     * @param Model $record
+     * @return string
+     */
+    public static function getGlobalSearchResultTitle(Model $record): string
+    {
+        return $record->type_name;
+    }
+
+    /**
+     * Function that fetches a value from the array mentioned below
+     *
+     * @return array
+     */
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['type_name', 'created_at'];
+    }
+
+    /**
      * Function that returns values ​​from the model and shows in the sidebar
      *
      * @return integer
@@ -38,14 +59,18 @@ class MembershiptypeResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('type_name')
-                    ->required()
-                    ->maxLength(15),
-                Forms\Components\TextInput::make('membership_period')
-                    ->required()
-                    ->maxLength(15),
-                Forms\Components\TextInput::make('membership_amout')
-                    ->required(),
+                Forms\Components\Card::make()
+                    ->schema([
+                        Forms\Components\TextInput::make('type_name')
+                            ->placeholder('Annually')
+                            ->required()
+                            ->maxLength(50),
+                        Forms\Components\TextInput::make('amount')
+                            ->mask(fn (Forms\Components\TextInput\Mask $mask) => $mask->money(prefix: '$', isSigned: false))
+                            ->placeholder('50')
+                            ->required()
+                            ->maxLength(15),
+                    ])
             ]);
     }
 
@@ -53,16 +78,14 @@ class MembershiptypeResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('id')
+                Tables\Columns\BadgeColumn::make('id')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('type_name')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('membership_period')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('membership_amout')
+                Tables\Columns\BadgeColumn::make('amount')
+                    ->prefix('$')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
@@ -96,7 +119,6 @@ class MembershiptypeResource extends Resource
     {
         return [
             'index' => Pages\ListMembershiptypes::route('/'),
-            'create' => Pages\CreateMembershiptype::route('/create'),
             'edit' => Pages\EditMembershiptype::route('/{record}/edit'),
         ];
     }

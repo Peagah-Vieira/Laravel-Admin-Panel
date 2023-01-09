@@ -16,8 +16,7 @@ return new class extends Migration
         Schema::create('membershiptypes', function (Blueprint $table) {
             $table->id();
             $table->string('type_name');
-            $table->string('membership_period');
-            $table->float('membership_amout');
+            $table->float('amount');
             $table->timestamps();
         });
     }

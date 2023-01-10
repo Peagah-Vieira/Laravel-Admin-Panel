@@ -9,4 +9,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateMembershiptype extends CreateRecord
 {
     protected static string $resource = MembershiptypeResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->previousUrl ?? $this->getResource()::getUrl('index');
+    }
 }

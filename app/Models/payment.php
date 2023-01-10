@@ -20,7 +20,11 @@ class Payment extends Model
         'payment_date',
     ];
 
-    public function members(){
+    public function member(){
         return $this->belongsTo(Member::class);
+    }
+
+    public function membershiptype(){
+        return $this->belongsTo(Membershiptype::class);
     }
 }

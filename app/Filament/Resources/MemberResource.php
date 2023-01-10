@@ -40,7 +40,7 @@ class MemberResource extends Resource
      */
     public static function getGloballySearchableAttributes(): array
     {
-        return ['member_name', 'address', 'contact', 'email', 'age', 'gender', 'joining_date'];
+        return ['member_name', 'address', 'contact', 'email', 'age', 'gender'];
     }
     /**
      * Function that returns values ​​from the model and shows in the sidebar
@@ -60,33 +60,33 @@ class MemberResource extends Resource
                     ->schema([
                         Forms\Components\TextInput::make('member_name')
                             ->placeholder('John Doe')
-                            ->required()
-                            ->maxLength(50),
+                            ->unique()
+                            ->required(),
                         Forms\Components\TextInput::make('address')
                             ->placeholder('Some Place Here')
-                            ->required()
-                            ->maxLength(100),
+                            ->required(),
                         Forms\Components\TextInput::make('contact')
                             ->mask(fn (Forms\Components\TextInput\Mask $mask) => $mask->pattern('(00)00000-0000'))
                             ->placeholder('(22)99843-8864')
                             ->numeric()
                             ->tel()
-                            ->required()
-                            ->maxLength(15),
+                            ->unique()
+                            ->required(),
                         Forms\Components\TextInput::make('email')
                             ->placeholder('teste@teste.com')
                             ->email()
-                            ->required()
-                            ->maxLength(30),
+                            ->unique()
+                            ->required(),
                         Forms\Components\TextInput::make('age')
                             ->placeholder('18')
                             ->required(),
                         Forms\Components\Select::make('gender')
                             ->required()
+                            ->disablePlaceholderSelection()
                             ->options([
-                                'Male' => 'Male',
-                                'Female' => 'Female',
-                                'Other' => 'Other'
+                                'male' => 'Male',
+                                'female' => 'Female',
+                                'other' => 'Other'
                             ])
                     ])
             ]);
@@ -96,9 +96,6 @@ class MemberResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\BadgeColumn::make('id')
-                    ->searchable()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('member_name')
                     ->searchable()
                     ->sortable(),
@@ -114,9 +111,7 @@ class MemberResource extends Resource
                 Tables\Columns\BadgeColumn::make('age')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\BadgeColumn::make('gender'),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
+                Tables\Columns\BadgeColumn::make('gender')
             ])->defaultSort('id')
             ->filters([
                 SelectFilter::make('active')
@@ -128,6 +123,7 @@ class MemberResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),

@@ -39,7 +39,7 @@ class MembershiptypeResource extends Resource
      */
     public static function getGloballySearchableAttributes(): array
     {
-        return ['type_name', 'created_at'];
+        return ['type_name'];
     }
 
     /**
@@ -60,13 +60,12 @@ class MembershiptypeResource extends Resource
                     ->schema([
                         Forms\Components\TextInput::make('type_name')
                             ->placeholder('Annually')
-                            ->required()
-                            ->maxLength(50),
+                            ->unique()
+                            ->required(),
                         Forms\Components\TextInput::make('amount')
                             ->mask(fn (Forms\Components\TextInput\Mask $mask) => $mask->money(prefix: '$', isSigned: false))
                             ->placeholder('50')
                             ->required()
-                            ->maxLength(15),
                     ])
             ]);
     }
@@ -75,9 +74,6 @@ class MembershiptypeResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\BadgeColumn::make('id')
-                    ->searchable()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('type_name')
                     ->searchable()
                     ->sortable(),
@@ -88,7 +84,7 @@ class MembershiptypeResource extends Resource
                 Tables\Columns\TextColumn::make('created_at')
                     ->searchable()
                     ->sortable()
-                    ->dateTime(),
+                    ->date(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->searchable()
                     ->sortable()
@@ -99,6 +95,7 @@ class MembershiptypeResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
@@ -116,6 +113,7 @@ class MembershiptypeResource extends Resource
     {
         return [
             'index' => Pages\ListMembershiptypes::route('/'),
+            'create' => Pages\CreateMembershiptype::route('/create'),
             'edit' => Pages\EditMembershiptype::route('/{record}/edit'),
         ];
     }

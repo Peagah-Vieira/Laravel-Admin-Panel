@@ -3,15 +3,13 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PaymentResource\Pages;
+use App\Filament\Resources\PaymentResource\RelationManagers\MembersRelationManager;
 use App\Models\Payment;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PaymentResource extends Resource
 {
@@ -40,9 +38,9 @@ class PaymentResource extends Resource
                 Forms\Components\Card::make()
                     ->schema([
                         Forms\Components\Select::make('member_name')
-                            ->required(),
-                        Forms\Components\Select::make('membership_type')
-                            ->required(),
+                        ->label('Member name')
+                        ->relationship('members', 'member_name')
+                        ->required(),
                         Forms\Components\TextInput::make('amount')
                             ->mask(fn (Forms\Components\TextInput\Mask $mask) => $mask->money(prefix: '$', isSigned: false))
                             ->required(),
@@ -61,9 +59,6 @@ class PaymentResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('id')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('member_name')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\BadgeColumn::make('amount')
@@ -97,7 +92,7 @@ class PaymentResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            MembersRelationManager::class,
         ];
     }
 
@@ -105,6 +100,7 @@ class PaymentResource extends Resource
     {
         return [
             'index' => Pages\ListPayments::route('/'),
+            'create' => Pages\CreatePayment::route('/create'),
             'edit' => Pages\EditPayment::route('/{record}/edit'),
         ];
     }

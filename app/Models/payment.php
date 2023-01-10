@@ -15,9 +15,12 @@ class Payment extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'member_id',
         'amount',
         'payment_time',
         'payment_date',
     ];
+
+    public function members(){
+        return $this->belongsTo(Member::class);
+    }
 }

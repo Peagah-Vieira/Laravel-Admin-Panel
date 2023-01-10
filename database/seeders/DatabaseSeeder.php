@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Member;
 use App\Models\Membershiptype;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -30,6 +31,15 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@admin.com',
             'password' => Hash::make('admin1234'),
+        ]);
+
+        Member::factory()->create([
+            'member_name' => 'Pedro Henrique',
+            'address' => 'Narnia',
+            'contact' => '22998438864',
+            'email' => 'teste@teste.com',
+            'age' => '18',
+            'gender' => 'Male'
         ]);
     }
 }

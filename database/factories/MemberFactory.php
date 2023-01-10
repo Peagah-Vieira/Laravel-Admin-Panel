@@ -23,9 +23,6 @@ class MemberFactory extends Factory
             'email' => fake()->email(),
             'age' => fake()->numberBetween(18, 50),
             'gender' => 'Male',
-            'joining_date' => now(),
-            'ending_date' => now(),
-            'active' => 0,
         ];
     }
 }

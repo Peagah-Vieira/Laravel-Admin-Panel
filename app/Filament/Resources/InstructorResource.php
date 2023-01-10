@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\InstructorResource\Pages;
-use App\Filament\Resources\InstructorResource\RelationManagers;
 use App\Models\Instructor;
 use Filament\Forms;
 use Filament\Resources\Form;
@@ -11,9 +10,7 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Filament\Tables\Filters\SelectFilter;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class InstructorResource extends Resource
 {

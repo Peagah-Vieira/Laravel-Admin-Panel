@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('payments', function (Blueprint $table) {
-            $table->id('payment_id', 11);
+            $table->id();
             $table->integer('member_id');
             $table->float('amount');
-            $table->timestamp('payment_time');
+            $table->time('payment_time');
             $table->date('payment_date');
             $table->timestamps();
         });

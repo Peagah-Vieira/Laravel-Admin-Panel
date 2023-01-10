@@ -14,10 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('membershiptypes', function (Blueprint $table) {
-            $table->id('type_id', 11);
-            $table->string('type_name', 15);
-            $table->string('membership_period', 15);
-            $table->float('membership_amout');
+            $table->id();
+            $table->string('type_name');
+            $table->float('amount');
             $table->timestamps();
         });
     }

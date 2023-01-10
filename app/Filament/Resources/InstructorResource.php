@@ -40,7 +40,7 @@ class InstructorResource extends Resource
      */
     public static function getGloballySearchableAttributes(): array
     {
-        return ['instructor_name', 'contact', 'email', 'address'];
+        return ['instructor_name', 'email', 'contact', 'address'];
     }
 
     /**
@@ -61,24 +61,23 @@ class InstructorResource extends Resource
                     ->schema([
                         Forms\Components\TextInput::make('instructor_name')
                             ->placeholder('John Doe')
-                            ->required()
-                            ->maxLength(30),
+                            ->unique()
+                            ->required(),
                         Forms\Components\TextInput::make('contact')
                             ->mask(fn (Forms\Components\TextInput\Mask $mask) => $mask->pattern('(00)00000-0000'))
                             ->placeholder('(22)99843-8864')
                             ->numeric()
                             ->tel()
-                            ->required()
-                            ->maxLength(50),
+                            ->unique()
+                            ->required(),
                         Forms\Components\TextInput::make('address')
                             ->placeholder('Some Place Here')
-                            ->required()
-                            ->maxLength(100),
+                            ->required(),
                         Forms\Components\TextInput::make('email')
                             ->placeholder('teste@teste.com')
                             ->email()
-                            ->required()
-                            ->maxLength(30),
+                            ->unique()
+                            ->required(),
                         Forms\Components\Toggle::make('active')
                             ->nullable()
                             ->onColor('success')
@@ -90,9 +89,6 @@ class InstructorResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\BadgeColumn::make('id')
-                    ->searchable()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('instructor_name')
                     ->searchable()
                     ->sortable(),
@@ -119,6 +115,7 @@ class InstructorResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
@@ -136,6 +133,7 @@ class InstructorResource extends Resource
     {
         return [
             'index' => Pages\ListInstructors::route('/'),
+            'create' => Pages\CreateInstructor::route('/create'),
             'edit' => Pages\EditInstructor::route('/{record}/edit'),
         ];
     }

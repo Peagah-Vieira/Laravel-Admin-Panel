@@ -4,12 +4,13 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
 use App\Models\User;
+use Carbon\Carbon;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Filament\Tables\Filters\SelectFilter;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class UserResource extends Resource
@@ -103,13 +104,46 @@ class UserResource extends Resource
                     ->dateTime(),
             ])->defaultSort('id')
             ->filters([
-                SelectFilter::make('role')
+                Tables\Filters\Filter::make('created_at')
+                    ->form([
+                        Forms\Components\DatePicker::make('created_from')
+                            ->placeholder('Jan 30, 2022')
+                            ->maxDate(now()),
+                        Forms\Components\DatePicker::make('created_until')
+                            ->placeholder('Jan 11, 2023')
+                            ->maxDate(now()),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['created_from'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('created_at', '>=', $date),
+                            )
+                            ->when(
+                                $data['created_until'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('created_at', '<=', $date),
+                            );
+                    })->indicateUsing(function (array $data): array {
+                        $indicators = [];
+
+                        if ($data['created_from'] ?? null) {
+                            $indicators['from'] = 'Created from ' . Carbon::parse($data['created_from'])->toFormattedDateString();
+                        }
+
+                        if ($data['created_until'] ?? null) {
+                            $indicators['until'] = 'Created until ' . Carbon::parse($data['created_until'])->toFormattedDateString();
+                        }
+
+                        return $indicators;
+                    }),
+                Tables\Filters\SelectFilter::make('role')
                     ->options([
                         'Manager' => 'Manager',
                         'Instructor' => 'Instructor',
                         'Member' => 'Member',
                     ])
                     ->attribute('role')
+                    ->indicator('Role')
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

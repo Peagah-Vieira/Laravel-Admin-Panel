@@ -9,7 +9,6 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Model;
 
 class MemberResource extends Resource
@@ -114,12 +113,11 @@ class MemberResource extends Resource
                 Tables\Columns\BadgeColumn::make('gender')
             ])->defaultSort('id')
             ->filters([
-                SelectFilter::make('active')
-                    ->options([
-                        '0' => 'Unactive',
-                        '1' => 'Active',
-                    ])
-                    ->attribute('active')
+                Tables\Filters\SelectFilter::make('gender')->options([
+                    'male' => 'Male',
+                    'female' => 'Female',
+                    'other' => 'Other'
+                ]),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

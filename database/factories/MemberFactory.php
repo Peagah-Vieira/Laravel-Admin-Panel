@@ -19,8 +19,8 @@ class MemberFactory extends Factory
         return [
             'member_name' => fake()->name(),
             'address' => 'Rio de Janeiro, Brazil',
-            'contact' => fake()->phoneNumber(),
-            'email' => fake()->phoneNumber(),
+            'contact' => '22998438864',
+            'email' => fake()->email(),
             'age' => fake()->numberBetween(18, 50),
             'gender' => 'male'
         ];

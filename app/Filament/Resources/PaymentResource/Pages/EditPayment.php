@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\PaymentResource\Pages;
 
 use App\Filament\Resources\PaymentResource;
+use Filament\Notifications\Notification;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
 
@@ -17,8 +18,16 @@ class EditPayment extends EditRecord
         ];
     }
 
-    protected function getRedirectUrl(): string
+    /**
+     * Function that return a notification after the resource has been updated.
+     *
+     * @return Notification
+     */
+    protected function getSavedNotification(): ?Notification
     {
-        return $this->previousUrl ?? $this->getResource()::getUrl('index');
+        return Notification::make()
+            ->success()
+            ->title('Payment updated')
+            ->body('The Payment has been updated.');
     }
 }

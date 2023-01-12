@@ -21,7 +21,7 @@ class PaymentResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-cash';
 
-    protected static ?string $navigationLabel = 'Payments Resource';
+    protected static ?string $navigationLabel = 'Payments';
 
     protected static ?string $navigationGroup = 'Resources';
 
@@ -44,16 +44,6 @@ class PaymentResource extends Resource
     public static function getGloballySearchableAttributes(): array
     {
         return ['member.member_name', 'amount'];
-    }
-
-    /**
-     * Function that returns values ​​from the model and shows in the sidebar
-     *
-     * @return integer
-     */
-    protected static function getNavigationBadge(): ?string
-    {
-        return static::getModel()::count();
     }
 
     public static function form(Form $form): Form

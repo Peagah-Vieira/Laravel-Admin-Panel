@@ -18,7 +18,7 @@ class InstructorResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-identification';
 
-    protected static ?string $navigationLabel = 'Instructors Resource';
+    protected static ?string $navigationLabel = 'Instructors';
 
     protected static ?string $navigationGroup = 'Resources';
 
@@ -41,16 +41,6 @@ class InstructorResource extends Resource
     public static function getGloballySearchableAttributes(): array
     {
         return ['instructor_name', 'email', 'contact', 'address'];
-    }
-
-    /**
-     * Function that returns values ​​from the model and shows in the sidebar
-     *
-     * @return integer
-     */
-    protected static function getNavigationBadge(): ?string
-    {
-        return static::getModel()::count();
     }
 
     public static function form(Form $form): Form

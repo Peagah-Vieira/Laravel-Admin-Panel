@@ -17,7 +17,7 @@ class MembershiptypeResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
 
-    protected static ?string $navigationLabel = 'Membership Resource';
+    protected static ?string $navigationLabel = 'Membership';
 
     protected static ?string $navigationGroup = 'Resources';
 
@@ -40,16 +40,6 @@ class MembershiptypeResource extends Resource
     public static function getGloballySearchableAttributes(): array
     {
         return ['type_name'];
-    }
-
-    /**
-     * Function that returns values ​​from the model and shows in the sidebar
-     *
-     * @return integer
-     */
-    protected static function getNavigationBadge(): ?string
-    {
-        return static::getModel()::count();
     }
 
     public static function form(Form $form): Form

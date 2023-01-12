@@ -17,7 +17,7 @@ class MemberResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-user';
 
-    protected static ?string $navigationLabel = 'Members Resource';
+    protected static ?string $navigationLabel = 'Members';
 
     protected static ?string $navigationGroup = 'Resources';
 
@@ -40,15 +40,6 @@ class MemberResource extends Resource
     public static function getGloballySearchableAttributes(): array
     {
         return ['member_name', 'address', 'contact', 'email', 'age', 'gender'];
-    }
-    /**
-     * Function that returns values ​​from the model and shows in the sidebar
-     *
-     * @return integer
-     */
-    protected static function getNavigationBadge(): ?string
-    {
-        return static::getModel()::count();
     }
 
     public static function form(Form $form): Form

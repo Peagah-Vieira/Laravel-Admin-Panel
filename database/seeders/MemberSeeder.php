@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Member;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Payment;
 use Illuminate\Database\Seeder;
 
 class MemberSeeder extends Seeder
@@ -15,6 +15,15 @@ class MemberSeeder extends Seeder
      */
     public function run()
     {
-        Member::factory(0)->create();
+        for($i = 1; $i < 6; $i++){
+            Member::factory()->create([
+                'member_name' => 'Weak Man'.$i,
+                'address' => 'Rio de Janeiro, Brazil',
+                'contact' => '2299843886'.$i,
+                'email' => 'weakman'.$i.'@gmail.com',
+                'age' => fake()->numberBetween(18, 50),
+                'gender' => 'male'
+            ]);
+        }
     }
 }

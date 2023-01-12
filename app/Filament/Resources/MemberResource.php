@@ -17,7 +17,7 @@ class MemberResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-user';
 
-    protected static ?string $navigationLabel = 'Members Resource';
+    protected static ?string $navigationLabel = 'Members';
 
     protected static ?string $navigationGroup = 'Resources';
 
@@ -41,15 +41,6 @@ class MemberResource extends Resource
     {
         return ['member_name', 'address', 'contact', 'email', 'age', 'gender'];
     }
-    /**
-     * Function that returns values ​​from the model and shows in the sidebar
-     *
-     * @return integer
-     */
-    protected static function getNavigationBadge(): ?string
-    {
-        return static::getModel()::count();
-    }
 
     public static function form(Form $form): Form
     {
@@ -59,7 +50,6 @@ class MemberResource extends Resource
                     ->schema([
                         Forms\Components\TextInput::make('member_name')
                             ->placeholder('John Doe')
-                            ->unique()
                             ->required(),
                         Forms\Components\TextInput::make('address')
                             ->placeholder('Some Place Here')
@@ -69,12 +59,10 @@ class MemberResource extends Resource
                             ->placeholder('(22)99843-8864')
                             ->numeric()
                             ->tel()
-                            ->unique()
                             ->required(),
                         Forms\Components\TextInput::make('email')
                             ->placeholder('teste@teste.com')
                             ->email()
-                            ->unique()
                             ->required(),
                         Forms\Components\TextInput::make('age')
                             ->placeholder('18')

@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->integer('member_id')->nullable();
             $table->integer('membershiptype_id')->nullable();
-            $table->float('amount');
-            $table->time('payment_time');
-            $table->date('payment_date');
+            $table->float('amount')->nullable();
+            $table->time('payment_time')->nullable();
+            $table->date('payment_date')->nullable();
             $table->timestamps();
         });
     }

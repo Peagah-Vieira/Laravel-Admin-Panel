@@ -18,10 +18,10 @@ class InstructorFactory extends Factory
     {
         return [
             'instructor_name' => fake()->name(),
+            'email' => fake()->email(),
             'contact' => fake()->phoneNumber(),
-            'address' => fake()->address(),
-            'email' => fake()->unique()->safeEmail(),
-            'active' => 0,
+            'address' => 'Rio de Janeiro, Brazil',
+            'active' => true
         ];
     }
 }

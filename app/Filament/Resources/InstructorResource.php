@@ -18,7 +18,7 @@ class InstructorResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-identification';
 
-    protected static ?string $navigationLabel = 'Instructors Resource';
+    protected static ?string $navigationLabel = 'Instructors';
 
     protected static ?string $navigationGroup = 'Resources';
 
@@ -43,16 +43,6 @@ class InstructorResource extends Resource
         return ['instructor_name', 'email', 'contact', 'address'];
     }
 
-    /**
-     * Function that returns values ​​from the model and shows in the sidebar
-     *
-     * @return integer
-     */
-    protected static function getNavigationBadge(): ?string
-    {
-        return static::getModel()::count();
-    }
-
     public static function form(Form $form): Form
     {
         return $form
@@ -61,14 +51,12 @@ class InstructorResource extends Resource
                     ->schema([
                         Forms\Components\TextInput::make('instructor_name')
                             ->placeholder('John Doe')
-                            ->unique()
                             ->required(),
                         Forms\Components\TextInput::make('contact')
                             ->mask(fn (Forms\Components\TextInput\Mask $mask) => $mask->pattern('(00)00000-0000'))
                             ->placeholder('(22)99843-8864')
                             ->numeric()
                             ->tel()
-                            ->unique()
                             ->required(),
                         Forms\Components\TextInput::make('address')
                             ->placeholder('Some Place Here')
@@ -76,7 +64,6 @@ class InstructorResource extends Resource
                         Forms\Components\TextInput::make('email')
                             ->placeholder('teste@teste.com')
                             ->email()
-                            ->unique()
                             ->required(),
                         Forms\Components\Toggle::make('active')
                             ->nullable()

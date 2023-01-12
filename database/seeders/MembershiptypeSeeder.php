@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Membershiptype;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class MembershiptypeSeeder extends Seeder
@@ -15,6 +14,19 @@ class MembershiptypeSeeder extends Seeder
      */
     public function run()
     {
-        Membershiptype::factory(0)->create();
+        Membershiptype::factory()->create([
+            'type_name' => 'Anually',
+            'amount' => '1050'
+        ]);
+
+        Membershiptype::factory()->create([
+            'type_name' => 'Monthly',
+            'amount' => '100'
+        ]);
+
+        Membershiptype::factory()->create([
+            'type_name' => 'PAYG',
+            'amount' => '20'
+        ]);
     }
 }

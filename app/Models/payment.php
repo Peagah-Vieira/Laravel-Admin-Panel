@@ -20,10 +20,20 @@ class Payment extends Model
         'payment_date',
     ];
 
+    /**
+     * Function that makes the relationship about member
+     *
+     * @return relationship
+     */
     public function member(){
         return $this->belongsTo(Member::class);
     }
 
+    /**
+     * Function that makes the relationship about membershiptype
+     *
+     * @return relationship
+     */
     public function membershiptype(){
         return $this->belongsTo(Membershiptype::class);
     }

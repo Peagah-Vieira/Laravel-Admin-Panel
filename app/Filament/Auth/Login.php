@@ -36,8 +36,8 @@ class Login extends Component implements HasForms
         }
 
         $this->form->fill([
-            'email' => 'admin@admin.com',
-            'password' => 'admin1234',
+            'email' => 'test@test.com',
+            'password' => 'test1234',
             'remember' => true
         ]);
     }

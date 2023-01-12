@@ -17,10 +17,7 @@ class PaymentFactory extends Factory
     public function definition()
     {
         return [
-            'member_id' => fake()->unique()->numberBetween(1, 100),
-            'amount' => 50.00,
-            'payment_time' => now(),
-            'payment_date' => now(),
+            //
         ];
     }
 }

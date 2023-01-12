@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Payment;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class PaymentSeeder extends Seeder
@@ -15,6 +14,14 @@ class PaymentSeeder extends Seeder
      */
     public function run()
     {
-        Payment::factory(0)->create();
+        for($i = 1; $i < 6; $i++){
+            Payment::factory()->create([
+                'member_id' => $i,
+                'membershiptype_id' => 1,
+                'amount' => '100',
+                'payment_time' => now(),
+                'payment_date' => now()
+            ]);
+        }
     }
 }

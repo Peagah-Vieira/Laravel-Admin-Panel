@@ -17,7 +17,7 @@ class MembershiptypeResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
 
-    protected static ?string $navigationLabel = 'Membership Resource';
+    protected static ?string $navigationLabel = 'Membership';
 
     protected static ?string $navigationGroup = 'Resources';
 
@@ -42,16 +42,6 @@ class MembershiptypeResource extends Resource
         return ['type_name'];
     }
 
-    /**
-     * Function that returns values ​​from the model and shows in the sidebar
-     *
-     * @return integer
-     */
-    protected static function getNavigationBadge(): ?string
-    {
-        return static::getModel()::count();
-    }
-
     public static function form(Form $form): Form
     {
         return $form
@@ -60,7 +50,6 @@ class MembershiptypeResource extends Resource
                     ->schema([
                         Forms\Components\TextInput::make('type_name')
                             ->placeholder('Annually')
-                            ->unique()
                             ->required(),
                         Forms\Components\TextInput::make('amount')
                             ->mask(fn (Forms\Components\TextInput\Mask $mask) => $mask->money(prefix: '$', isSigned: false))

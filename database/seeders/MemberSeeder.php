@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Member;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Payment;
 use Illuminate\Database\Seeder;
 
 class MemberSeeder extends Seeder
@@ -15,6 +15,6 @@ class MemberSeeder extends Seeder
      */
     public function run()
     {
-        Member::factory(0)->create();
+        Member::factory(5)->create();
     }
 }

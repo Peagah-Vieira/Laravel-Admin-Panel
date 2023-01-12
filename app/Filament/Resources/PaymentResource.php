@@ -118,11 +118,11 @@ class PaymentResource extends Resource
                         return $query
                             ->when(
                                 $data['payment_date_from'],
-                                fn (Builder $query, $date): Builder => $query->whereDate('payment_date', '>=', $date),
+                                fn (Builder $query, $date): Builder => $query->whereDate('payment_date', '>=', $date), 
                             )
                             ->when(
                                 $data['payment_date_until'],
-                                fn (Builder $query, $date): Builder => $query->whereDate('payment_date', '<=', $date),
+                                fn (Builder $query, $date): Builder => $query->whereDate('payment_date', '<=', $date), 
                             );
                     })
                     ->indicateUsing(function (array $data): array {

@@ -51,14 +51,12 @@ class InstructorResource extends Resource
                     ->schema([
                         Forms\Components\TextInput::make('instructor_name')
                             ->placeholder('John Doe')
-                            ->unique()
                             ->required(),
                         Forms\Components\TextInput::make('contact')
                             ->mask(fn (Forms\Components\TextInput\Mask $mask) => $mask->pattern('(00)00000-0000'))
                             ->placeholder('(22)99843-8864')
                             ->numeric()
                             ->tel()
-                            ->unique()
                             ->required(),
                         Forms\Components\TextInput::make('address')
                             ->placeholder('Some Place Here')
@@ -66,7 +64,6 @@ class InstructorResource extends Resource
                         Forms\Components\TextInput::make('email')
                             ->placeholder('teste@teste.com')
                             ->email()
-                            ->unique()
                             ->required(),
                         Forms\Components\Toggle::make('active')
                             ->nullable()

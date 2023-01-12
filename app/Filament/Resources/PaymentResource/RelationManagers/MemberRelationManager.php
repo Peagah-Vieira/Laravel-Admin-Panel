@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\PaymentResource\RelationManagers;
 
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Table;
@@ -16,7 +18,33 @@ class MemberRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                //
+                TextInput::make('member_name')
+                    ->placeholder('John Doe')
+                    ->required(),
+                TextInput::make('address')
+                    ->placeholder('Some Place Here')
+                    ->required(),
+                TextInput::make('contact')
+                    ->mask(fn (TextInput\Mask $mask) => $mask->pattern('(00)00000-0000'))
+                    ->placeholder('(22)99843-8864')
+                    ->numeric()
+                    ->tel()
+                    ->required(),
+                TextInput::make('email')
+                    ->placeholder('teste@teste.com')
+                    ->email()
+                    ->required(),
+                TextInput::make('age')
+                    ->placeholder('18')
+                    ->required(),
+                Select::make('gender')
+                    ->required()
+                    ->disablePlaceholderSelection()
+                    ->options([
+                        'male' => 'Male',
+                        'female' => 'Female',
+                        'other' => 'Other'
+                    ])
             ]);
     }
 

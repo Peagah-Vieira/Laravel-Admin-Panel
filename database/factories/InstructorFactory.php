@@ -17,7 +17,11 @@ class InstructorFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'instructor_name' => fake()->name(),
+            'email' => fake()->email(),
+            'contact' => fake()->phoneNumber(),
+            'address' => 'Rio de Janeiro, Brazil',
+            'active' => true
         ];
     }
 }

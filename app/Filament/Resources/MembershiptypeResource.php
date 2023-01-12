@@ -50,7 +50,6 @@ class MembershiptypeResource extends Resource
                     ->schema([
                         Forms\Components\TextInput::make('type_name')
                             ->placeholder('Annually')
-                            ->unique()
                             ->required(),
                         Forms\Components\TextInput::make('amount')
                             ->mask(fn (Forms\Components\TextInput\Mask $mask) => $mask->money(prefix: '$', isSigned: false))

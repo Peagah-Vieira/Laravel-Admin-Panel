@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\MemberResource\Pages;
 
 use App\Filament\Resources\MemberResource;
+use Filament\Notifications\Notification;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
 
@@ -17,8 +18,16 @@ class EditMember extends EditRecord
         ];
     }
 
-    protected function getRedirectUrl(): string
+    /**
+     * Function that return a notification after the resource has been updated.
+     *
+     * @return Notification
+     */
+    protected function getSavedNotification(): ?Notification
     {
-        return $this->previousUrl ?? $this->getResource()::getUrl('index');
+        return Notification::make()
+            ->success()
+            ->title('Member updated')
+            ->body('The member has been updated.');
     }
 }

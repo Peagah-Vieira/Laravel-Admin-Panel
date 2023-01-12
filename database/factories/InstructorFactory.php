@@ -19,7 +19,7 @@ class InstructorFactory extends Factory
         return [
             'instructor_name' => fake()->name(),
             'email' => fake()->email(),
-            'contact' => fake()->phoneNumber(),
+            'contact' => '22998438864',
             'address' => 'Rio de Janeiro, Brazil',
             'active' => true
         ];

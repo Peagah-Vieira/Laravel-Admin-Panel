@@ -18,7 +18,7 @@ class PaymentSeeder extends Seeder
             Payment::factory()->create([
                 'member_id' => $i,
                 'membershiptype_id' => 1,
-                'amount' => '100',
+                'amount' => '1050',
                 'payment_time' => now(),
                 'payment_date' => now()
             ]);

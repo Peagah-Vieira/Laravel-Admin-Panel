@@ -2,6 +2,7 @@
 
 use App\Filament\Auth\Login;
 use App\Filament\Pages\Dashboard;
+use App\Filament\Widgets\LatestPayments;
 use App\Filament\Widgets\MembersChart;
 use App\Filament\Widgets\PaymentsChart;
 use App\Filament\Widgets\SocialNetworksWidget;
@@ -150,6 +151,7 @@ return [
             StatsOverview::class,
             MembersChart::class,
             PaymentsChart::class,
+            LatestPayments::class,
         ],
     ],
 

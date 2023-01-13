@@ -8,7 +8,7 @@ use Flowframe\Trend\TrendValue;
 use Filament\Widgets\LineChartWidget;
 
 class MembersChart extends LineChartWidget
-{
+{    
     protected static ?string $heading = 'New Members';
 
     protected function getData(): array

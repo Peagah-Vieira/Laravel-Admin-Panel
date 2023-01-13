@@ -3,7 +3,8 @@
 namespace App\Filament\Widgets;
 
 use App\Models\Member;
-use Carbon\Carbon;
+use Flowframe\Trend\Trend;
+use Flowframe\Trend\TrendValue;
 use Filament\Widgets\LineChartWidget;
 
 class MembersChart extends LineChartWidget
@@ -12,21 +13,19 @@ class MembersChart extends LineChartWidget
 
     protected function getData(): array
     {
-        $members = Member::select('created_at')->get()->groupBy( function($users) {
-            return Carbon::parse($users->created_at)->format('F');
-        });
-
-        $quantities = [];
-
-        foreach ($members as $member => $value) {
-            array_push($quantities, $value->count());
-        }
+        $data = Trend::model(Member::class)
+            ->between(
+                start: now()->startOfYear(),
+                end: now()->endOfYear(),
+            )
+            ->perMonth()
+            ->count();
 
         return [
             'datasets' => [
                 [
                     'label' => 'Members Joined',
-                    'data' => $quantities,
+                    'data' => $data->map(fn (TrendValue $value) => $value->aggregate),
                     'backgroundColor' => [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(255, 159, 64, 0.2)',
@@ -48,7 +47,7 @@ class MembersChart extends LineChartWidget
                     'borderWidth' => 1
                 ],
             ],
-            'labels' => $members->keys(),
+            'labels' => $data->map(fn (TrendValue $value) => $value->date),
         ];
     }
 }

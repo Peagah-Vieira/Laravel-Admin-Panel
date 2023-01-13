@@ -14,7 +14,7 @@ class PaymentSeeder extends Seeder
      */
     public function run()
     {
-        for($i = 1; $i < 6; $i++){
+        for($i = 1; $i < 501; $i++){
             Payment::factory()->create([
                 'member_id' => $i,
                 'membershiptype_id' => 1,

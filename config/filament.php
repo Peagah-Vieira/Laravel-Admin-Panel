@@ -2,7 +2,11 @@
 
 use App\Filament\Auth\Login;
 use App\Filament\Pages\Dashboard;
+use App\Filament\Widgets\LatestPayments;
+use App\Filament\Widgets\MembersChart;
+use App\Filament\Widgets\PaymentsChart;
 use App\Filament\Widgets\SocialNetworksWidget;
+use App\Filament\Widgets\StatsOverview;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Http\Middleware\MirrorConfigToSubpackages;
@@ -144,6 +148,10 @@ return [
         'register' => [
             Widgets\AccountWidget::class,
             SocialNetworksWidget::class,
+            StatsOverview::class,
+            MembersChart::class,
+            PaymentsChart::class,
+            LatestPayments::class,
         ],
     ],
 

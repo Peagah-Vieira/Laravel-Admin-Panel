@@ -12,6 +12,7 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use HusamTariq\FilamentTimePicker\Forms\Components\TimePickerField;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -69,10 +70,9 @@ class PaymentResource extends Resource
                         Forms\Components\TextInput::make('amount')
                             ->mask(fn (Forms\Components\TextInput\Mask $mask) => $mask->money(prefix: '$', isSigned: false))
                             ->required(),
-                        Forms\Components\TimePicker::make('payment_time')
-                            ->placeholder('18:00')
-                            ->withoutSeconds()
-                            ->required(),
+                        TimePickerField::make('payment_time')
+                            ->okLabel('Confirm')
+                            ->cancelLabel('Cancel'),
                         Forms\Components\DatePicker::make('payment_date')
                             ->placeholder('Jan 5, 2023')
                             ->maxDate(now())

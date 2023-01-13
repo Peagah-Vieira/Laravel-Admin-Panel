@@ -8,6 +8,7 @@
         "php": "^8.0.2",
         "filament/filament": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
+        "husam-tariq/filament-timepicker": "^1.0",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",

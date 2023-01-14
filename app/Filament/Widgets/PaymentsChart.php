@@ -25,7 +25,7 @@ class PaymentsChart extends LineChartWidget
             'datasets' => [
                 [
                     'label' => 'Payments',
-                    'data' => $data->map(fn (TrendValue $value) => $value->aggregate),
+                    'data' => $data->map(fn (TrendValue $value) => $value->aggregate), 
                     'backgroundColor' => [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(255, 159, 64, 0.2)',

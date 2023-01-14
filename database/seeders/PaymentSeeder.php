@@ -14,14 +14,16 @@ class PaymentSeeder extends Seeder
      */
     public function run()
     {
-        for($i = 1; $i < 501; $i++){
-            Payment::factory()->create([
-                'member_id' => $i,
-                'membershiptype_id' => 1,
-                'amount' => '1050',
-                'payment_time' => now(),
-                'payment_date' => now()
-            ]);
+        for($j = 1; $j <= 12; $j++){
+            for($i = 1; $i <= 50; $i++){
+                Payment::factory()->create([
+                    'member_id' => $i,
+                    'membershiptype_id' => 1,
+                    'amount' => '1050',
+                    'payment_time' => now(),
+                    'payment_date' => '2023-0'.$j.'-10'
+                ]);
+            }
         }
     }
 }

@@ -12,6 +12,7 @@
         "husam-tariq/filament-timepicker": "^1.0",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
+        "laravel/socialite": "^5.5",
         "laravel/tinker": "^2.7",
         "spatie/laravel-permission": "^5.7"
     },

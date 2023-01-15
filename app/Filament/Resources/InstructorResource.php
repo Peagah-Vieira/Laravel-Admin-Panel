@@ -15,6 +15,8 @@ use Illuminate\Database\Eloquent\Model;
 class InstructorResource extends Resource
 {
     protected static ?string $model = Instructor::class;
+    
+    protected static ?int $navigationSort = 2;
 
     protected static ?string $navigationIcon = 'heroicon-o-identification';
 

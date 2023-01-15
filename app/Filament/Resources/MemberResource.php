@@ -13,7 +13,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class MemberResource extends Resource
 {
-    protected static ?string $model = Member::class;
+    protected static ?string $model = Member::class;  
+     
+    protected static ?int $navigationSort = 2;
 
     protected static ?string $navigationIcon = 'heroicon-o-user';
 

@@ -2,6 +2,11 @@
 
 use App\Filament\Auth\Login;
 use App\Filament\Pages\Dashboard;
+use App\Filament\Pages\MyProfile;
+use App\Filament\Resources\InstructorResource;
+use App\Filament\Resources\MemberResource;
+use App\Filament\Resources\MembershiptypeResource;
+use App\Filament\Resources\PaymentResource;
 use App\Filament\Widgets\LatestPayments;
 use App\Filament\Widgets\MembersChart;
 use App\Filament\Widgets\PaymentsChart;
@@ -113,6 +118,7 @@ return [
         'path' => app_path('Filament/Pages'),
         'register' => [
             Dashboard::class,
+            MyProfile::class,
         ],
     ],
 
@@ -129,7 +135,12 @@ return [
     'resources' => [
         'namespace' => 'App\\Filament\\Resources',
         'path' => app_path('Filament/Resources'),
-        'register' => [],
+        'register' => [
+            InstructorResource::class,
+            MemberResource::class,
+            MembershiptypeResource::class,
+            PaymentResource::class,
+        ],
     ],
 
     /*
@@ -327,6 +338,7 @@ return [
     'middleware' => [
         'auth' => [
             Authenticate::class,
+            'verified'
         ],
         'base' => [
             EncryptCookies::class,

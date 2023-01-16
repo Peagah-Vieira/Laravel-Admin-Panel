@@ -3,8 +3,8 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PaymentResource\Pages;
-use App\Filament\Resources\PaymentResource\RelationManagers\MemberRelationManager;
 use App\Filament\Resources\PaymentResource\RelationManagers\MembershiptypeRelationManager;
+use App\Filament\Resources\PaymentResource\RelationManagers\UserRelationManager;
 use App\Models\Payment;
 use Carbon\Carbon;
 use Filament\Forms;
@@ -36,7 +36,7 @@ class PaymentResource extends Resource
      */
     public static function getGlobalSearchResultTitle(Model $record): string
     {
-        return $record->member->member_name;
+        return $record->user->name;
     }
 
     /**
@@ -46,7 +46,7 @@ class PaymentResource extends Resource
      */
     public static function getGloballySearchableAttributes(): array
     {
-        return ['member.member_name', 'amount'];
+        return ['user.name', 'amount'];
     }
 
     public static function form(Form $form): Form
@@ -55,9 +55,9 @@ class PaymentResource extends Resource
             ->schema([
                 Forms\Components\Card::make()
                     ->schema([
-                        Forms\Components\Select::make('member_name')
-                            ->label('Member name')
-                            ->relationship('member', 'member_name')
+                        Forms\Components\Select::make('user_name')
+                            ->label('User name')
+                            ->relationship('user', 'name')
                             ->disablePlaceholderSelection()
                             ->searchable()
                             ->preload()
@@ -87,7 +87,7 @@ class PaymentResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('member.member_name')
+                Tables\Columns\TextColumn::make('user.name')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('membershiptype.type_name')
@@ -184,7 +184,7 @@ class PaymentResource extends Resource
     public static function getRelations(): array
     {
         return [
-            MemberRelationManager::class,
+            UserRelationManager::class,
             MembershiptypeRelationManager::class,
         ];
     }

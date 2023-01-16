@@ -30,7 +30,7 @@ class LatestPayments extends BaseWidget
     protected function getTableColumns(): array
     {
         return ([
-            TextColumn::make('member.member_name')
+            TextColumn::make('user.name')
                 ->searchable()
                 ->sortable(),
             TextColumn::make('membershiptype.type_name')
@@ -56,9 +56,9 @@ class LatestPayments extends BaseWidget
         return [
             ViewAction::make()
                 ->form([
-                    Select::make('member_name')
-                        ->label('Member name')
-                        ->relationship('member', 'member_name')
+                    Select::make('user_name')
+                        ->label('User name')
+                        ->relationship('user', 'name')
                         ->disablePlaceholderSelection()
                         ->searchable()
                         ->preload()

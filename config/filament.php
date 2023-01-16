@@ -4,13 +4,12 @@ use App\Filament\Auth\Login;
 use App\Filament\Pages\Dashboard;
 use App\Filament\Pages\MyProfile;
 use App\Filament\Resources\InstructorResource;
-use App\Filament\Resources\MemberResource;
 use App\Filament\Resources\MembershiptypeResource;
 use App\Filament\Resources\PaymentResource;
 use App\Filament\Resources\RoleResource;
 use App\Filament\Resources\UserResource;
 use App\Filament\Widgets\LatestPayments;
-use App\Filament\Widgets\MembersChart;
+use App\Filament\Widgets\UsersChart;
 use App\Filament\Widgets\PaymentsChart;
 use App\Filament\Widgets\SocialNetworksWidget;
 use App\Filament\Widgets\StatsOverview;
@@ -139,7 +138,6 @@ return [
         'path' => app_path('Filament/Resources'),
         'register' => [
             InstructorResource::class,
-            MemberResource::class,
             MembershiptypeResource::class,
             PaymentResource::class,
             UserResource::class,
@@ -165,7 +163,7 @@ return [
             Widgets\AccountWidget::class,
             SocialNetworksWidget::class,
             StatsOverview::class,
-            MembersChart::class,
+            UsersChart::class,
             PaymentsChart::class,
             LatestPayments::class,
         ],

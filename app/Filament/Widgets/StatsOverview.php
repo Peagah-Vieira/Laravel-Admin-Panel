@@ -3,8 +3,8 @@
 namespace App\Filament\Widgets;
 
 use App\Models\Instructor;
-use App\Models\Member;
 use App\Models\Payment;
+use App\Models\User;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Card;
 
@@ -28,7 +28,7 @@ class StatsOverview extends BaseWidget
                 ->descriptionIcon('heroicon-s-trending-down')
                 ->chart([8, 7, 5, 6, 4, 3, 3])
                 ->color('danger'),
-            Card::make('Members', Member::all()->count())
+            Card::make('Users', User::all()->count())
                 ->description('10% increase')
                 ->descriptionIcon('heroicon-s-trending-up')
                 ->chart([10, 4, 7, 3, 15, 5, 17])

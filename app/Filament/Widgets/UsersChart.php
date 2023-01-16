@@ -2,23 +2,23 @@
 
 namespace App\Filament\Widgets;
 
-use App\Models\Member;
+use App\Models\User;
 use Flowframe\Trend\Trend;
 use Flowframe\Trend\TrendValue;
 use Filament\Widgets\LineChartWidget;
 
-class MembersChart extends LineChartWidget
+class UsersChart extends LineChartWidget
 {
     public static function canView(): bool
     {
         return auth()->user()->hasAnyRole(['admin', 'manager']);
     }
 
-    protected static ?string $heading = 'New Members';
+    protected static ?string $heading = 'New Users';
 
     protected function getData(): array
     {
-        $data = Trend::model(Member::class)
+        $data = Trend::model(User::class)
             ->between(
                 start: now()->startOfYear(),
                 end: now()->endOfYear(),
@@ -29,7 +29,7 @@ class MembersChart extends LineChartWidget
         return [
             'datasets' => [
                 [
-                    'label' => 'Members Joined',
+                    'label' => 'Users Joined',
                     'data' => $data->map(fn (TrendValue $value) => $value->aggregate),
                     'backgroundColor' => [
                         'rgba(255, 99, 132, 0.2)',

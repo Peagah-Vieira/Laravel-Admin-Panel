@@ -17,7 +17,12 @@ class PaymentFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'user_id' => 4,
+            'membershiptype_id' => 1,
+            'amount' => '1050',
+            'payment_time' => now(),
+            'payment_date' => now(),
+            'created_at' => now(),
         ];
     }
 }

@@ -15,6 +15,11 @@ use HusamTariq\FilamentTimePicker\Forms\Components\TimePickerField;
 
 class LatestPayments extends BaseWidget
 {
+    public static function canView(): bool
+    {
+        return auth()->user()->hasAnyRole(['admin', 'manager']);
+    }
+
     protected int | string | array $columnSpan = 'full';
 
     protected function getTableQuery(): Builder

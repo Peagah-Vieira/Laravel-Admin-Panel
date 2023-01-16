@@ -10,6 +10,11 @@ use Filament\Widgets\StatsOverviewWidget\Card;
 
 class StatsOverview extends BaseWidget
 {
+    public static function canView(): bool
+    {
+        return auth()->user()->hasAnyRole(['admin', 'manager']);
+    }
+
     protected function getCards(): array
     {
         return [

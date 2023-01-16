@@ -119,6 +119,15 @@ class RolesAndPermissionsSeeder extends Seeder
         ])->assignRole($adminRole);
 
         User::create([
+            'name' => 'Manager Demo',
+            'is_admin' => 1,
+            'email' => 'manager@demo.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+            'remember_token' => Str::random(10),
+        ])->assignRole($managerRole);
+
+        User::create([
             'name' => 'Instructor Demo',
             'is_admin' => 0,
             'email' => 'instructor@demo.com',

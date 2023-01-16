@@ -8,9 +8,14 @@ use Flowframe\Trend\TrendValue;
 use Filament\Widgets\LineChartWidget;
 
 class MembersChart extends LineChartWidget
-{    
+{
+    public static function canView(): bool
+    {
+        return auth()->user()->hasAnyRole(['admin', 'manager']);
+    }
+
     protected static ?string $heading = 'New Members';
-    
+
     protected function getData(): array
     {
         $data = Trend::model(Member::class)

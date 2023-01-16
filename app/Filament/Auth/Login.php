@@ -174,8 +174,8 @@ class Login extends FilamentBreezyLogin
         }
 
         $this->form->fill([
-            'email' => 'test@test.com',
-            'password' => 'test1234',
+            'email' => 'admin@demo.com',
+            'password' => 'password',
             'remember' => true
         ]);
     }

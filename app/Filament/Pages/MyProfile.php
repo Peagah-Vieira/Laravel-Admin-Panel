@@ -14,7 +14,7 @@ class MyProfile extends BaseProfile
 {
     use HasBreezyTwoFactor;
     
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 4;
 
     protected static string $view = "filament-breezy::filament.pages.my-profile";
 

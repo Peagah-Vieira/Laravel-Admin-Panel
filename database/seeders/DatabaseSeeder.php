@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
             InstructorSeeder::class,
             MemberSeeder::class,
             PaymentSeeder::class,
-            MembershiptypeSeeder::class
+            MembershiptypeSeeder::class,
+            RolesAndPermissionsSeeder::class,
         ]);
     }
 }

@@ -7,6 +7,8 @@ use App\Filament\Resources\InstructorResource;
 use App\Filament\Resources\MemberResource;
 use App\Filament\Resources\MembershiptypeResource;
 use App\Filament\Resources\PaymentResource;
+use App\Filament\Resources\RoleResource;
+use App\Filament\Resources\UserResource;
 use App\Filament\Widgets\LatestPayments;
 use App\Filament\Widgets\MembersChart;
 use App\Filament\Widgets\PaymentsChart;
@@ -37,7 +39,7 @@ return [
     |
     */
 
-    'path' => env('FILAMENT_PATH', 'admin'),
+    'path' => env('FILAMENT_PATH', '/'),
 
     /*
     |--------------------------------------------------------------------------
@@ -140,6 +142,9 @@ return [
             MemberResource::class,
             MembershiptypeResource::class,
             PaymentResource::class,
+            UserResource::class,
+            RoleResource::class,
+            UserResource::class,
         ],
     ],
 

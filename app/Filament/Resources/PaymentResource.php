@@ -26,7 +26,7 @@ class PaymentResource extends Resource
 
     protected static ?string $navigationLabel = 'Payments';
 
-    protected static ?string $navigationGroup = 'Resources';
+    protected static ?string $navigationGroup = 'Manager Resources';
 
     /**
      * Function that returns the name as the title of the found value

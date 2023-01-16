@@ -8,10 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use JeffGreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, TwoFactorAuthenticatable;
+    use HasApiTokens, HasFactory, HasRoles, Notifiable, TwoFactorAuthenticatable;
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'name',
         'email',
+        'is_admin',
         'password',
     ];
 

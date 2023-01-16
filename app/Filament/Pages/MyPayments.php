@@ -14,13 +14,13 @@ class MyPayments extends ListRecords implements HasTable
 {
     protected static string $resource = PaymentResource::class;
     
-    protected static ?int $navigationSort = 4;
+    protected static ?int $navigationSort = 3;
 
     protected static ?string $navigationIcon = 'heroicon-o-cash';
 
     protected static ?string $navigationLabel = 'My Payments';
 
-    protected static ?string $navigationGroup = 'Account';
+    protected static ?string $navigationGroup = 'Payments';
 
     protected static string $view = 'filament.pages.my-payments';
 

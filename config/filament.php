@@ -2,7 +2,9 @@
 
 use App\Filament\Auth\Login;
 use App\Filament\Pages\Dashboard;
+use App\Filament\Pages\MyPayments;
 use App\Filament\Pages\MyProfile;
+use App\Filament\Pages\PaymentForm;
 use App\Filament\Resources\InstructorResource;
 use App\Filament\Resources\MembershiptypeResource;
 use App\Filament\Resources\PaymentResource;
@@ -119,6 +121,8 @@ return [
         'path' => app_path('Filament/Pages'),
         'register' => [
             Dashboard::class,
+            PaymentForm::class,
+            MyPayments::class,
             MyProfile::class,
         ],
     ],

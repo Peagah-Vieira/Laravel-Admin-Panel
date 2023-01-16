@@ -2,7 +2,6 @@
 
 namespace App\Filament\Auth;
 
-use App\Models\User;
 use JeffGreco13\FilamentBreezy\Http\Livewire\Auth\Register as FilamentBreezyRegister;
 use Filament\Facades\Filament;
 use Filament\Forms;
@@ -10,8 +9,6 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Hash;
 use JeffGreco13\FilamentBreezy\FilamentBreezy;
-use Spatie\Permission\Models\Permission;
-
 class Register extends FilamentBreezyRegister implements Forms\Contracts\HasForms
 {
     use Forms\Concerns\InteractsWithForms;

@@ -18,11 +18,6 @@ class EditInstructor extends EditRecord
         ];
     }
 
-    /**
-     * Function that return a notification after the resource has been updated.
-     *
-     * @return Notification
-     */
     protected function getSavedNotification(): ?Notification
     {
         return Notification::make()

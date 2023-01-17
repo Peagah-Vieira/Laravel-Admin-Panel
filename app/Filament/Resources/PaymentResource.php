@@ -28,22 +28,11 @@ class PaymentResource extends Resource
 
     protected static ?string $navigationGroup = 'Manager Resources';
 
-    /**
-     * Function that returns the name as the title of the found value
-     *
-     * @param Model $record
-     * @return string
-     */
     public static function getGlobalSearchResultTitle(Model $record): string
     {
         return $record->user->name;
     }
 
-    /**
-     * Function that fetches a value from the array mentioned below
-     *
-     * @return array
-     */
     public static function getGloballySearchableAttributes(): array
     {
         return ['user.name', 'amount'];

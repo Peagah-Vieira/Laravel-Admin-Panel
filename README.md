@@ -37,14 +37,14 @@ Project using Laravel, Filament and TALL stack.
 To run this project, you will need to add the following environment variables to your .env file
 
 ```env
-   GITHUB_ID
-   GITHUB_CLIENT_SECRET
-   GITHUB_REDIRECT
+GITHUB_ID
+GITHUB_CLIENT_SECRET
+GITHUB_REDIRECT
 ```
 ```env
-   GITLAB_CLIENT_ID
-   GITLAB_CLIENT_SECRET
-   GITLAB_REDIRECT
+GITLAB_CLIENT_ID
+GITLAB_CLIENT_SECRET
+GITLAB_REDIRECT
 ```
 
 

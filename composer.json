@@ -15,6 +15,7 @@
         "laravel/sanctum": "^3.0",
         "laravel/socialite": "^5.5",
         "laravel/tinker": "^2.7",
+        "owenvoke/blade-fontawesome": "^2.1",
         "shuvroroy/filament-spatie-laravel-health": "^1.6",
         "spatie/laravel-permission": "^5.7"
     },

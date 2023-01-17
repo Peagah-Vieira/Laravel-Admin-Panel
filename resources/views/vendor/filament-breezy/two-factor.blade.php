@@ -1,10 +1,4 @@
 <x-filament-breezy::auth-card action="authenticate">
-
-    <div class="w-full flex justify-center">
-        <x-filament::brand />
-    </div>
-
-
     <div>
         <h2 class="font-bold tracking-tight text-center text-2xl">
             {{ $this->usingRecoveryCode ? __('filament-breezy::default.two_factor.recovery.heading') : __('filament-breezy::default.two_factor.heading') }}

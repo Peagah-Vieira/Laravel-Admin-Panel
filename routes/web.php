@@ -18,10 +18,25 @@ Route::get('auth/github/callback', function () {
     $user = User::query()->firstOrCreate(['email' => $githubUser->getEmail()], [
         'name' => $githubUser->getName(),
         'password' => bcrypt(Str::random(10)),
-    ]);
+    ])->assignRole('user');
 
     Auth::login($user);
-    return redirect('/admin');
+    return redirect('/');
 });
 
+Route::get('login/gitlab/redirect', function () {
+    return Socialite::driver('gitlab')->redirect();
+})->name('login.gitlab.redirect');
+
+Route::get('auth/gitlab/callback', function () {
+    $gitlabUser = Socialite::driver('gitlab')->user();
+
+    $user = User::query()->firstOrCreate(['email' => $gitlabUser->getEmail()], [
+        'name' => $gitlabUser->getName(),
+        'password' => bcrypt(Str::random(10)),
+    ])->assignRole('user');
+
+    Auth::login($user);
+    return redirect('/');
+});
 #endregion

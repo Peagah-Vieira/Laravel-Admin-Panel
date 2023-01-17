@@ -31,7 +31,7 @@ class MyPayments extends ListRecords implements HasTable
 
     public function mount(): void
     {
-        abort_if(auth()->user()->hasAnyRole(['admin', 'manager']), 403);
+        abort_unless(auth()->user()->hasAnyRole(['user', 'member']), 403);
     }
 
     protected function getTableQuery(): Builder

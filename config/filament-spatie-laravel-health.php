@@ -1,5 +1,7 @@
 <?php
 
+use App\Filament\Pages\HealthCheck;
+
 return [
 
 	/*
@@ -13,7 +15,7 @@ return [
     */
 
 	'pages' => [
-		'health' => \ShuvroRoy\FilamentSpatieLaravelHealth\Pages\HealthCheckResults::class
+		'health' => HealthCheck::class,
     ],
 
 ];

@@ -45,7 +45,7 @@ class PaymentForm extends CreateRecord implements HasForms
             'payment_date' => now(),
         ]);
 
-        abort_if(auth()->user()->hasAnyRole(['admin', 'manager', 'isntructor', 'member']), 403);
+        abort_unless(auth()->user()->hasAnyRole(['user']), 403);
     }
 
     protected function getFormSchema(): array

@@ -1,8 +1,4 @@
 <x-filament-breezy::auth-card action="logout">
-    <div class="w-full flex justify-center">
-        <x-filament::brand />
-    </div>
-
     <div class="space-y-8">
         <h2 class="font-bold tracking-tight text-center text-2xl">
             {{ __('filament-breezy::default.verification.heading') }}

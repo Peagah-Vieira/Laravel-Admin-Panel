@@ -13,6 +13,11 @@ Project using Laravel, Filament and TALL stack.
 - Github/Gitlab login
 
 
+## Demo
+
+https://www.youtube.com/watch?v=0qIb5d6CR04
+
+
 ## Deployment
 
 1. Clone the repo
@@ -37,14 +42,14 @@ Project using Laravel, Filament and TALL stack.
 To run this project, you will need to add the following environment variables to your .env file
 
 ```env
-GITHUB_ID
-GITHUB_CLIENT_SECRET
-GITHUB_REDIRECT
+   GITHUB_ID
+   GITHUB_CLIENT_SECRET
+   GITHUB_REDIRECT
 ```
 ```env
-GITLAB_CLIENT_ID
-GITLAB_CLIENT_SECRET
-GITLAB_REDIRECT
+   GITLAB_CLIENT_ID
+   GITLAB_CLIENT_SECRET
+   GITLAB_REDIRECT
 ```
 
 

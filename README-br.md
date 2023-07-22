@@ -1,35 +1,35 @@
 # Laravel Admin Panel
 
-Admin panel built using Laravel and Tailwind
+Painel de administração construído usando Laravel e Tailwind
 
 ## Features
 
--   Github and Gitlab login
--   Roles and permission
--   2FA Authentication
--   Application Health
--   Light and dark theme
+-   Login no Github e no Gitlab
+-   Funções e permissões
+-   Autenticação 2FA
+-   Saúde do aplicativo
+-   Tema claro e escuro
 
-## Video Demonstration
+## Demonstração em vídeo
 
 [![Watch the video](https://gcdnb.pbrd.co/images/0wvz7rsCv1g4.png?o=1)](https://www.youtube.com/watch?v=0qIb5d6CR04)
 
-## Running locally
+## Executando localmente
 
-Clone the project
+Clonar o projeto
 
 ```bash
 git clone https://github.com/Peagah-Vieira/Laravel-Admin-Panel
 ```
 
-Install the dependencies
+Instale as dependências
 
 ```bash
 npm install
 composer install
 ```
 
-Change environment variables
+Alterar variáveis ​​de ambiente
 
 ```bash
 # Laravel Configuration
@@ -58,35 +58,19 @@ Change environment variables
 # GITLAB_REDIRECT="CHANGE-ME"
 ```
 
-Migrate the database
+Migrar o banco de dados
 
 ```bash
 php artisan migrate:fresh --seed
 ```
 
-Start the server
+Iniciar o servidor
 
 ```bash
 npm run dev
 ```
 
-## Environment Variables
-
-To run this project, you will need to add the following environment variables to your .env file
-
-```env
-   GITHUB_ID
-   GITHUB_CLIENT_SECRET
-   GITHUB_REDIRECT
-```
-
-```env
-   GITLAB_CLIENT_ID
-   GITLAB_CLIENT_SECRET
-   GITLAB_REDIRECT
-```
-
-## Documentation
+## Documentação
 
 [![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net)
 

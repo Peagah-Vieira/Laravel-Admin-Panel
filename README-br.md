@@ -12,7 +12,7 @@ Painel de administração construído usando Laravel e Tailwind
 
 ## Demonstração em vídeo
 
-[![Watch the video](https://gcdnb.pbrd.co/images/0wvz7rsCv1g4.png?o=1)](https://www.youtube.com/watch?v=0qIb5d6CR04)
+https://www.youtube.com/watch?v=0qIb5d6CR04
 
 ## Executando localmente
 

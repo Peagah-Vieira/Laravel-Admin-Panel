@@ -22,40 +22,22 @@ Clonar o projeto
 git clone https://github.com/Peagah-Vieira/Laravel-Admin-Panel
 ```
 
-Instale as dependências
+Instale todas as dependências usando o composer
 
 ```bash
-npm install
 composer install
 ```
 
-Alterar variáveis ​​de ambiente
+Instale todas as dependências usando npm
 
 ```bash
-# Laravel Configuration
-# APP_NAME="Laravel"
-# APP_ENV=local
-# APP_KEY="GENERATE A KEY"
-# APP_DEBUG=true
-# APP_URL=http://localhost
+npm install
+```
 
-# MySQL Configuration
-# DB_CONNECTION=mysql
-# DB_HOST=127.0.0.1
-# DB_PORT=3306
-# DB_DATABASE="CHANGE-ME"
-# DB_USERNAME="CHANGE-ME"
-# DB_PASSWORD="CHANGE-ME"
+Copie o arquivo env de exemplo e faça as alterações de configuração necessárias no arquivo .env
 
-# Github Socialite Configuration
-# GITHUB_ID="CHANGE-ME"
-# GITHUB_CLIENT_SECRET="CHANGE-ME"
-# GITHUB_REDIRECT="CHANGE-ME"
-
-# Gitlab Socialite Configuration
-# GITLAB_CLIENT_ID="CHANGE-ME"
-# GITLAB_CLIENT_SECRET="CHANGE-ME"
-# GITLAB_REDIRECT="CHANGE-ME"
+```bash
+cp .env.example .env
 ```
 
 Migrar o banco de dados

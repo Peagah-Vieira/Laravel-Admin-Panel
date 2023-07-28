@@ -14,7 +14,7 @@ Admin panel built using Laravel and Tailwind
 
 ## Video Demonstration
 
-[![Watch the video](https://gcdnb.pbrd.co/images/0wvz7rsCv1g4.png?o=1)](https://www.youtube.com/watch?v=0qIb5d6CR04)
+https://www.youtube.com/watch?v=0qIb5d6CR04
 
 ## Running locally
 
